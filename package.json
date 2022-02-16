@@ -3,15 +3,32 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve": "SET NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+    "build": "SET NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
+    "lint": "SET NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service lint",
+    "serve-linux": "export SET NODE_OPTIONS=--openssl-legacy-provider; vue-cli-service serve",
+    "build-linux": "export SET NODE_OPTIONS=--openssl-legacy-provider; vue-cli-service build",
+    "lint-linux": "export SET NODE_OPTIONS=--openssl-legacy-provider; vue-cli-service lint"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.11.5",
+    "@beyonk/google-fonts-webpack-plugin": "^1.7.0",
+    "axios": "^0.25.0",
+    "bootstrap": "^4.5.2",
+    "bootstrap-vue": "^2.17.3",
     "core-js": "^3.6.5",
+    "mutationobserver-shim": "^0.3.7",
+    "popper.js": "^1.16.1",
+    "portal-vue": "^2.1.7",
+    "validator": "^13.7.0",
     "vue": "^2.6.11",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-axios": "^3.4.0",
+    "vue-img-inputer": "^2.1.6",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vue-sweetalert2": "^5.0.2",
+    "vuex": "^3.4.0",
+    "vuex-persistedstate": "^3.2.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -27,8 +44,12 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.2.2",
+    "google-fonts-webpack-plugin": "^0.4.4",
+    "sass": "^1.26.11",
+    "sass-loader": "^10.0.2",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
+    "vue-cli-plugin-bootstrap-vue": "~0.8.2",
     "vue-template-compiler": "^2.6.11"
   }
 }
