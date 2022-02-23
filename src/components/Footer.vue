@@ -5,7 +5,7 @@
       <b-icon icon="facebook" class="mx-3" font-scale="2"></b-icon>
       <b-icon icon="instagram" class="mx-3" font-scale="2"></b-icon>
     </div>
-      <div class="row mt-3 w-100 d-flex justify-content-center mx-auto">
+    <!-- <div class="row mt-3 w-100 d-flex justify-content-center mx-auto">
         <div class="col text-center">
           <h4 class="fw-bold">About</h4>
           <div class="mt-4">
@@ -29,7 +29,7 @@
             <p>會員中心</p>
           </div>
         </div>
-      </div>
+      </div> -->
     <div class="footer-end w-100">
     <p class="text-center text-light">@所有圖片皆來自於網路僅為練習用</p>
     </div>

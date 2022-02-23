@@ -1,6 +1,6 @@
 <template>
-<div>
-<b-table :items="orders" :fields="fields" >
+<div class="mt-5">
+<b-table :items="orders" :fields="fields" head-variant="dark">
     <template #cell(user)="data">
       {{ data.item.user.email }}
     </template>
@@ -9,7 +9,7 @@
     </template>
     <template #cell(products)="data">
       <ul>
-        <li v-for="product in data.item.products" :key="product._id">
+        <li v-for="product in data.item.products" :key="product._id" style="list-style: none">
           {{ product.product.name}} X {{ product.quantity }}
         </li>
       </ul>

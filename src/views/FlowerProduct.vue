@@ -1,47 +1,27 @@
 <template>
-<div>
-  <b-row>
-    <b-col cols="6">
-      <img :src="image">
+<div class="content-all d-flex flex-sm-column justify-content-sm-center align-items-sm-center pb-5">
+  <b-row class="w-100 p-5">
+    <b-col sm="12" lg="6" class="d-flex justify-content-center">
+      <img :src="image" width="600">
     </b-col>
-    <b-col cols="6">
-      <h1>{{ name }}</h1>
-      <h4>${{ price }}</h4>
-      <b-form-spinbutton id="demo-sb" min="0" max="100" v-model.number='quantity'></b-form-spinbutton>
-      <b-button @click="addCart">加入購物車</b-button>
-      <div class="accordion" role="tablist">
-        <b-card no-body class="mb-1">
-          <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-button block v-b-toggle.accordion-1 variant="info">Accordion 1</b-button>
-          </b-card-header>
-          <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
-            <b-card-body>
-              <b-card-text style="white-space:pre">{{ description }}</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
-
-        <b-card no-body class="mb-1">
-          <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-button block v-b-toggle.accordion-2 variant="info">Accordion 2</b-button>
-          </b-card-header>
-          <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
-            <b-card-body>
-              <b-card-text>786786786786</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
-
-        <b-card no-body class="mb-1">
-          <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-button block v-b-toggle.accordion-3 variant="info">Accordion 3</b-button>
-          </b-card-header>
-          <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
-            <b-card-body>
-              <b-card-text>786786786</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
+    <b-col sm="12" lg="6" class="d-flex flex-column p-5 w-100">
+      <b-breadcrumb class="bg-transparent">
+        <b-breadcrumb-item href="/" class="path-text">首頁</b-breadcrumb-item>
+        <b-breadcrumb-item href="#/flower" class="path-text">{{this.category.big}}</b-breadcrumb-item>
+        <b-breadcrumb-item href="#/flower" class="path-text">{{this.category.small}}</b-breadcrumb-item>
+        <b-breadcrumb-item active class="text-dark">{{this.name}}</b-breadcrumb-item>
+      </b-breadcrumb>
+      <h1 class="product-name">{{name}}</h1>
+      <span class="mt-5 mb-5" style="white-space:pre;">{{ description }}</span>
+      <h4 class="mt-5">NT${{ price }}</h4>
+      <b-form-spinbutton id="demo-sb" min="0" max="100" v-model.number='quantity' class="w-50 mt-4"></b-form-spinbutton>
+      <b-button @click="addCart" class="w-50 mt-4 btn-color">加入購物車</b-button>
+      <div class="d-flex">
+        <b-button class="w-25 bg-transparent text-dark border-none"  @click="likes">
+          <b-icon icon="heart"></b-icon>
+        </b-button>
+        <p>加入追蹤名單</p>
+        <p>{{ this.user }}</p>
       </div>
     </b-col>
   </b-row>
@@ -56,12 +36,31 @@ export default {
       price: 0,
       description: '',
       image: '',
-      quantity: 0
+      quantity: 0,
+      category: { big: '', small: '' },
+      like: []
     }
   },
   methods: {
-    addCart () {
+    async addCart () {
       this.$store.dispatch('user/addCart', { product: this.$route.params.id, quantity: this.quantity })
+    },
+    async likes (id) {
+      try {
+        if (this.user.isLogin) {
+          await this.api.patch('/users/like/' + this.user._id, { _id: this.$route.params.id }, {
+            headers: {
+              authorization: 'Bearer ' + this.user.token
+            }
+          })
+        }
+      } catch (error) {
+        this.$swal({
+          icon: 'error',
+          title: '錯誤',
+          text: error.response.data.message
+        })
+      }
     }
   },
   async created () {
@@ -71,7 +70,9 @@ export default {
       this.price = data.result.price
       this.description = data.result.description
       this.image = data.result.image
+      this.category = data.result.category
       document.title = `${this.name}`
+      console.log(this.user._id)
     } catch (error) {
       this.$router.push('/')
     }

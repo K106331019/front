@@ -1,26 +1,38 @@
 <template>
-<div id="adminProduct" class="vh-100">
-  <div class="d-flex justify-content-center align-items-center h-100">
-    <b-button v-b-modal.modal-product  class="addproduct">
-      <b-icon icon="plus-circle" font-scale="5"></b-icon>
-    </b-button>
-    <b-table sticky-header head-variant="light" :items="products" :fields="fields" ref="table">
+<div class="adminProduct">
+  <div>
+    <b-row>
+      <b-col>
+        <b-table sticky-header head-variant="dark" :items="products" :fields="fields" ref="table" class="bg-white mx-auto mt-5">
       <template #cell(image)="data">
-        <img v-if="data.item.image" :src="data.item.image" style="height:50px">
+        <img v-if="data.item.image" :src="data.item.image" class="w-50">
       </template>
       <template #cell(sell)="data">
         <b-form-checkbox v-if="data.item.sell"></b-form-checkbox>
       </template>
       <template #cell(category)="data">
-        <b-text v-if="data.item.category">{{ data.item.category }}</b-text>
+        <b-text v-if="data.item.category">
+          {{ data.item.category.big }} - {{ data.item.category.small }}</b-text>
       </template>
       <template #cell(action)="data">
-        <b-button @click="editProduct(data.index)">
-          <b-icon icon="pencil"></b-icon>
-        </b-button>
+        <div class="d-flex">
+          <b-button @click="editProduct(data.index)">
+            <b-icon icon="pencil"></b-icon>
+          </b-button>
+          <b-button @click="delProduct(data.item._id)">
+            <b-icon icon="trash"></b-icon>
+          </b-button>
+        </div>
       </template>
     </b-table>
-    <b-modal id="modal-product"  size="xl" centered
+      </b-col>
+    </b-row>
+    <b-row class="mt-5">
+      <b-col lg="2" class="mx-auto">
+        <b-button v-b-modal.modal-product  class="addproduct">
+        <b-icon icon="plus-circle" font-scale="5"></b-icon>
+        </b-button>
+        <b-modal id="modal-product"  size="xl" centered
       :title="form._id.length > 0 ? '編輯商品' : '新增商品'"
       ok-title='送出'
       ok-variant='warning'
@@ -63,7 +75,7 @@
         </b-form-group>
       </b-col>
       <b-col cols="12">
-        <img-inputer accept="image/*" v-model="form.image" theme="light" size="large" bottom-text="點選或拖曳圖片以修改" hover-text="點選或拖曳圖片以修改" placeholder="點選或拖曳圖片以修改" class="w-100 vh-50" :max-size="1024" exceed-size-text="圖片大小不能超過1MB"></img-inputer>
+        <img-inputer accept="image/*" v-model="form.image" theme="light" size="large" bottom-text="點選或拖曳圖片以修改" hover-text="點選或拖曳圖片以修改" placeholder="點選或拖曳圖片以修改" class="w-100 vh-50" :max-size="1024" exceed-size-text="圖片大小不能超過"></img-inputer>
       </b-col>
       <b-col cols="12">
         <b-form-group label="上架">
@@ -72,7 +84,10 @@
         </b-form-group>
       </b-col>
     </b-row>
-    </b-modal>
+        </b-modal>
+      </b-col>
+    </b-row>
+
   </div>
 </div>
 </template>
@@ -104,7 +119,7 @@ export default {
         index: -1
       },
       categories: {
-        乾燥花: ['乾燥花束', '乾燥花盆栽', '乾燥花圈', '玻璃花盅'],
+        乾燥花: ['乾燥花束', '乾燥花盆栽', '玻璃花盅'],
         婚禮系列: ['捧花', '胸花', '手腕花', '婚禮布置'],
         乾燥花飾品: ['耳環', '手鍊']
       }
@@ -155,6 +170,7 @@ export default {
           })
           this.products[this.form.index] = { ...this.form, image: data.result.image }
           this.$refs.table.refresh()
+          console.log(data.result)
         }
         this.$bvModal.hide('modal-product')
       } catch (error) {
@@ -194,7 +210,30 @@ export default {
         _id: this.products[index]._id,
         index
       }
+      console.log(this.form.category.big)
       this.$bvModal.show('modal-product')
+    },
+    async delProduct (id) {
+      try {
+        await this.api.delete('/products/' + id, {
+          headers: {
+            authorization: 'Bearer ' + this.user.token
+          }
+        })
+        this.$swal({
+          icon: 'success',
+          title: '成功',
+          text: '刪除商品成功'
+        })
+        this.products.splice(this.form.index, 1)
+      } catch (error) {
+        console.log(error)
+        this.$swal({
+          icon: 'error',
+          title: '錯誤',
+          text: '刪除商品失敗'
+        })
+      }
     }
   },
   async created () {

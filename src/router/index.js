@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import All from '../views/All.vue'
 import store from '../store'
+import swal from 'sweetalert2'
 
 Vue.use(VueRouter)
 
@@ -24,7 +25,7 @@ const routes = [
         name: 'About',
         component: () => import(/* webpackChunkName: "story" */ '../views/About.vue'),
         meta: {
-          title: 'About 花研院'
+          title: '花研院'
         }
       },
       {
@@ -32,7 +33,7 @@ const routes = [
         name: 'Flower',
         component: () => import(/* webpackChunkName: "flower" */ '../views/Flower.vue'),
         meta: {
-          title: 'Flower 花研院'
+          title: '花研院'
         }
       },
       {
@@ -40,7 +41,7 @@ const routes = [
         name: 'FlowerProduct',
         component: () => import(/* webpackChunkName: "flower" */ '../views/FlowerProduct.vue'),
         meta: {
-          title: 'FlowerProduct 花研院'
+          title: '花研院'
         }
       },
       {
@@ -48,7 +49,16 @@ const routes = [
         name: 'Cart',
         component: () => import(/* webpackChunkName: "cart" */ '../views/Cart.vue'),
         meta: {
-          title: 'Cart 花研院',
+          title: '花研院',
+          login: true
+        }
+      },
+      {
+        path: 'checkout',
+        name: 'Checkout',
+        component: () => import(/* webpackChunkName: "cart" */ '../views/Checkout.vue'),
+        meta: {
+          title: '花研院',
           login: true
         }
       },
@@ -57,7 +67,16 @@ const routes = [
         name: 'Orders',
         component: () => import(/* webpackChunkName: "orders" */ '../views/Orders.vue'),
         meta: {
-          title: 'order 花研院',
+          title: '花研院',
+          login: true
+        }
+      },
+      {
+        path: 'orderDetails',
+        name: 'OrderDetails',
+        component: () => import(/* webpackChunkName: "orders" */ '../views/OrderDetails.vue'),
+        meta: {
+          title: '花研院',
           login: true
         }
       },
@@ -66,7 +85,7 @@ const routes = [
         name: 'Wedding',
         component: () => import(/* webpackChunkName: "wedding" */ '../views/Wedding.vue'),
         meta: {
-          title: 'Wedding 花研院'
+          title: '花研院'
         }
       },
       {
@@ -74,15 +93,16 @@ const routes = [
         name: 'Accessories',
         component: () => import(/* webpackChunkName: "accessories" */ '../views/Accessories.vue'),
         meta: {
-          title: 'Accessories 花研院'
+          title: '花研院'
         }
       },
       {
-        path: 'share',
-        name: 'Share',
-        component: () => import(/* webpackChunkName: "share" */ '../views/Share.vue'),
+        path: 'like',
+        name: 'Like',
+        component: () => import(/* webpackChunkName: "share" */ '../views/Like.vue'),
         meta: {
-          title: 'Share 花研院'
+          title: '花研院',
+          login: true
         }
       },
       {
@@ -90,7 +110,7 @@ const routes = [
         name: 'Login',
         component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
         meta: {
-          title: 'Login 花研院'
+          title: '花研院'
         }
       },
       {
@@ -98,7 +118,7 @@ const routes = [
         name: 'Register',
         component: () => import(/* webpackChunkName: "register" */ '../views/Register.vue'),
         meta: {
-          title: 'Register 花研院'
+          title: ' 花研院'
         }
       }
 
@@ -112,16 +132,6 @@ const routes = [
       title: '後臺管理'
     },
     children: [
-      {
-        path: 'members',
-        name: 'AdminMembers',
-        component: () => import(/* webpackChunkName: "admin" */ '../views/AdminMembers.vue'),
-        meta: {
-          login: true,
-          admin: true,
-          title: '會員管理-花研院'
-        }
-      },
       {
         path: 'products',
         name: 'AdminProducts',
@@ -141,6 +151,16 @@ const routes = [
           admin: true,
           title: '訂單管理-花研院'
         }
+      },
+      {
+        path: 'servers',
+        name: 'AdminServer',
+        component: () => import(/* webpackChunkName: "admin" */ '../views/AdminServers.vue'),
+        meta: {
+          login: true,
+          admin: true,
+          title: '客製化管理-花研院'
+        }
       }
     ]
   },
@@ -158,6 +178,10 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const user = store.getters['user/user']
   if (to.meta.login && !user.isLogin && !to.path.includes('admin')) {
+    swal.fire({
+      icon: 'error',
+      text: '請先登入'
+    })
     next('/login')
   } else if (to.meta.admin && !user.isAdmin && !to.path.includes('admin')) {
     next('/')
