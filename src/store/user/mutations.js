@@ -18,7 +18,7 @@ export const getInfo = (state, data) => {
   state.role = data.role
   state.email = data.email
   state.cart = data.cart
-  state.like = data.likes
+  state.likes = data.likes
 }
 
 export const extend = (state, data) => {

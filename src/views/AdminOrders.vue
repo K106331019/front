@@ -39,6 +39,7 @@ export default {
         }
       })
       this.orders = data.result
+      console.log(this.orders)
     } catch (error) {
       this.$swal({
         icon: 'error',

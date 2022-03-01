@@ -1,20 +1,20 @@
 <template>
   <div class="content-all">
     <b-row class="w-75 mx-auto mb-2">
-      <b-col lg="4">
-        <p class="cart-list">
+      <b-col lg="4" >
+        <p class="cart-list mt-sm-5 mt-lg-0">
         01
         <span>購物車確認</span>
         </p>
-        <div class="list-under"></div>
+        <div class="list-under d-none d-md-none d-lg-block"></div>
       </b-col>
-      <b-col lg="4">
+      <b-col lg="4" class="d-none d-md-none d-lg-block">
         <p class="cart-list">
         02
         <span>購買與付款方式</span>
         </p>
       </b-col>
-      <b-col lg="4">
+      <b-col lg="4" class="d-none d-md-none d-lg-block">
         <p class="cart-list">
         03
         <span>完成訂單</span>
@@ -23,7 +23,7 @@
     </b-row>
     <b-row class="w-75 mx-auto">
       <b-col>
-        <b-table :items="products" :fields="fields" :tbody-tr-class="rowClass" class="mx-auto text-center cart-table">
+        <b-table :items="products" :fields="fields" :tbody-tr-class="rowClass" class="w-100 mx-auto text-center cart-table">
           <template #cell(image)="data">
             <img v-if="data.item.product.image" :src="data.item.product.image">
           </template>
@@ -45,6 +45,7 @@
             </b-button>
           </template>
         </b-table>
+        <p v-if="user.cart === 0" class="text-center">購物車是空的</p>
       </b-col>
     </b-row>
     <b-row class="m-0 w-75 mx-auto">

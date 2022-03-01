@@ -3,12 +3,12 @@
   <div>
     <b-row>
       <b-col>
-        <b-table sticky-header head-variant="dark" :items="products" :fields="fields" ref="table" class="bg-white mx-auto mt-5">
+        <b-table sticky-header head-variant="dark" :items="products" :fields="fields" ref="table" class="bg-white mx-auto mt-5 product-table">
       <template #cell(image)="data">
         <img v-if="data.item.image" :src="data.item.image" class="w-50">
       </template>
       <template #cell(sell)="data">
-        <b-form-checkbox v-if="data.item.sell"></b-form-checkbox>
+        {{ data.item.sell ? 'v' : '' }}
       </template>
       <template #cell(category)="data">
         <b-text v-if="data.item.category">
@@ -27,7 +27,7 @@
     </b-table>
       </b-col>
     </b-row>
-    <b-row class="mt-5">
+    <b-row class="mt-1">
       <b-col lg="2" class="mx-auto">
         <b-button v-b-modal.modal-product  class="addproduct">
         <b-icon icon="plus-circle" font-scale="5"></b-icon>
@@ -120,7 +120,7 @@ export default {
       },
       categories: {
         乾燥花: ['乾燥花束', '乾燥花盆栽', '玻璃花盅'],
-        婚禮系列: ['捧花', '胸花', '手腕花', '婚禮布置'],
+        婚禮系列: ['捧花', '花圈', '婚禮布置'],
         乾燥花飾品: ['耳環', '手鍊']
       }
     }
@@ -206,7 +206,7 @@ export default {
         description: this.products[index].description,
         image: null,
         sell: this.products[index].sell,
-        category: { big: '', small: '' },
+        category: this.products[index].category,
         _id: this.products[index]._id,
         index
       }

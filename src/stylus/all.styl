@@ -7,10 +7,7 @@
 *
   font-family: '微軟正黑體', "Microsoft JhengHei", Arial, sans-serif;
 
-// .header-top
-//   width 100vw
-//   height 30px
-//   background #ddb892
+
 #header
   position relative
 
@@ -24,13 +21,9 @@
 .navbar-light .navbar-nav .nav-link
   font-size 1.5rem
   line-height 1.1
-  font-weight 400
-  // font-family: 'Ranga', cursive;
-  // font-family: NectoMono-Regular;
-  // font-family: 'Roboto Mono', monospace;
-  // font-family: 'Open Sans Condensed', sans-serif;
+  font-weight 500
   font-family: Microsoft JhengHei ,Lato, Arial, Helvetica, sans-serif,woodmart-font,"Font Awesome 5 Brands","Font Awesome 5 Free"!important;
-  color rgba(0,0,0,.5)
+  color rgba(0,0,0,.6)
 
 .navbar-light .navbar-nav .nav-link:hover
   color rgb(172,117,118)
@@ -75,10 +68,19 @@
   color black
   text-align center
 
+#header .navbar-collapse
+  @media (max-width:990px)
+    margin-top 4.9%
+    background rgba(245,233,216,.8)
+
+#header .navbar-collapse ul
+  display flex
+  justify-content center
+  align-items center
 
   //------------------------ footer -----------------------------------//
 .footer-all
-  background url('../../image/背景.jpg') no-repeat center/cover
+  background url('../assets/image/背景.jpg') no-repeat center/cover
   // height 400px
   height 200px
   position relative
@@ -88,19 +90,21 @@
   position absolute
   bottom 0
 
+.ig
+  color #582f0e
 
 //---------------------------- 首頁---------------------------------------------//
+#carousel
+  @media (max-width:768px)
+    padding-top 15%
+  @media (max-width:576px)
+    padding-top 32%
+
 .content-header
   background #F0EDE8
 
 #sidebar-1
   z-index 9999999
-// img
-//   object-fit  cover
-
-// .carousel-item
-//   // position relative
-//   backdrop-filter blur(10px)
 
 .section01,
 .section02,
@@ -121,10 +125,28 @@
   width 600px
   height 500px
   background #F9DCC4
+  @media (max-width:576px)
+    width 300px
+    height 300px
+    left 5%
+
+
 .photo
-  position absolute
-  top 40px
-  left 30%
+  width 600px
+  height 500px
+  object-fit cover
+  position relative
+  top 35px
+  left 15%
+  @media (max-width:768px)
+    width 550px
+  @media (max-width:576px)
+    width 280px
+    height 300px
+    left 18%
+    object-fit cover
+
+
 
 .serve
   position relative
@@ -139,8 +161,34 @@
   left 42%
 
 
+
+.container:hover .hot{
+  opacity: 1;
+}
+
+.hot{
+  position: absolute;
+  background-color: rgba(69, 69, 69, 0.7)
+  width: 20%;
+  height: 15%;
+  border-radius 50%
+  top: 90%;
+  left: 85%
+  transform: translate(-50%,-50%);
+  opacity: 0;
+  transition: transform .2s ease 1s;
+}
+
+//-------------------------about ----------------------------------//
+.about
+  @media (max-width: 768px)
+    padding 15%
+  @media (max-width: 576px)
+    padding 30%
+    margin-top 40%
+
 //------------------------ flower---------------------------------//
-// .flower
+
 .img
   height 500px
   object-fit cover
@@ -154,8 +202,14 @@
   font-size 5rem
   font-family: ChekiangShuKeSung;
   color rgb(172,117,118)
-// .flower-text
-//   color rgb(213,152,108)
+
+.flower-title-img
+  @media (max-width: 768px)
+    width 350px
+    text-align center
+  @media (max-width: 576px)
+    width 300px
+
 .flower-border
   border 5px solid rgb(213,152,108)
 
@@ -182,6 +236,30 @@
     margin auto
   @media(min-width: 768px)
     margin-left 25%
+
+.check-line
+  width 95%
+  height 2px
+  background rgba(0,0,0,0.1)
+
+.card
+  box-shadow: 1px 1px 1px #ccc;
+  width: 25rem;
+  overflow: hidden;
+
+
+.card img
+  max-width: 100%;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  opacity: 0.8;
+
+
+.card img:hover
+  transform: scale(1.1);
+  opacity: 1.5;
+
 //------------------------------商品-------------------------------------//
 .card
   background none
@@ -197,7 +275,14 @@
 .product-name
   font-size 3rem
 
+.btn-love
+  width 35px
+  background none
+  border none
 
+
+.btn-love:hover
+  background none
 //-------------------------cart---------------------------//
 .cart-list
   font-size 2.5rem
@@ -243,70 +328,17 @@
 
 .cart-table tr td
   margin auto
+
+.cart-table td,th
+  padding 0.2rem
+
+
 .del
   border none
   color black
-// .flower-content
-//   margin-top 100px
 
-// .flower-title::before
-//   content ""
-//   width 70px
-//   height 2px
-//   background #adb5bd
-//   margin auto
-//   position absolute
-//   top 50px
-//   left 48%
 
-// .collect
-  // position absolute
-  // top 2%
-  // right 2%
 
-// .card
-//   max-width 100%
-//   max-height 100%
-//   background none
-//   border none
-
-// .card-header
-//   display flex
-//   justify-content center
-//   background none
-
-// .card-img-top:hover
-//   filter brightness(.9)
-//   cursor pointer
-
-//---------------------  checkout---------------------------------//
-.check-line
-  width 95%
-  height 2px
-  background rgba(0,0,0,0.1)
-
-.card {
-  box-shadow: 1px 1px 1px #ccc;
-  width: 28rem;
-  // height 37rem
-  overflow: hidden;
-  // background: black;
-}
-
-.card img {
-  max-width: 100%;
-  -moz-transition: all 0.3s;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  opacity: 0.9;
-}
-
-.card img:hover {
-  -moz-transform: scale(1.2);
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
-  opacity: 1.0;
-}
 
 //--------------------------------- order----------------------------------------------//
 .finish-table tr th:nth-child(1)
@@ -316,16 +348,34 @@
 .detail-table thead
   background #ccc
 
-//--------------------------------login -------------------------------------------//
+//--------------------------------like------------------------------------------------//
 
+.like-back
+  width 90%
+  height 900px
+  background rgba(255,255,255,.5)
+  margin auto
+
+.like-back .card
+  max-width 20rem
+  max-height  25rem
+
+.like-back .card img
+  width 500px
+  height 400px
+  object-fit cover
+
+
+//--------------------------------login -------------------------------------------//
 .register
   border none
   border-color none
-  color blue
+  color  rgb(0,0,0)
+  background none
 
 .register:hover
   background none
-  color black
+  color  red
 
 
 .font
@@ -395,7 +445,7 @@
   z-index 1
 
 .admin-card
-  width 1200px
+  width 1300px
   height 750px
   background #fff1e6
   margin auto
@@ -412,8 +462,6 @@
   color red
   margin auto
 
-// .bi-plus-circle:hover
-//   color red
 
 .admin-logo
   width 20%
@@ -423,7 +471,7 @@
   z-index -1
 
 .adminProduct .b-table-sticky-header
-  max-height 600px
+  max-height 550px
 
 .adminProduct img
   height 100px
@@ -436,3 +484,6 @@
   background none
   border none
   color black
+
+.product-table tr th:nth-child(5)
+  width 30%

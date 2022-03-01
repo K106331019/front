@@ -1,5 +1,5 @@
 <template>
-  <div class="content vh-100 d-flex flex-column justify-content-center align-items-center ">
+  <div class="content-all vh-100 d-flex flex-column justify-content-center align-items-center ">
     <div class="w-25 mx-auto mt-5">
     <h1>註冊</h1>
     <b-form @submit.prevent="register"  class="border border-secondary rounded p-4 mt-4">
@@ -15,26 +15,10 @@
         <b-form-input id="input-name" v-model="form.name" required :state="state.name"></b-form-input>
       </b-form-group>
 
-      <!-- <label for="form-date">生日</label>
-      <div class="row">
-        <div class="col-6">
-          <b-input-group class="mb-3">
-            <b-form-input id="form-date" v-model="date" type="text" placeholder="YYYY-MM-DD" autocomplete="off"></b-form-input>
-            <b-input-group-append>
-              <b-form-datepicker v-model="date" button-only right locale="en-US" @context="onContext"></b-form-datepicker>
-            </b-input-group-append>
-          </b-input-group>
-        </div>
-        <div class="col-6">
-        <select v-model="selected">
-          <option value="man">男</option>
-          <option value="female">女</option>
-        </select>
-        </div>
-      </div> -->
-
-      <b-button type="submit">送出</b-button>
-      <b-button type="reset" >重置</b-button>
+      <div class="d-flex justify-content-center">
+        <b-button type="submit" class="text-center w-25 btn-color">送出</b-button>
+        <b-button type="reset" class="text-center w-25 ml-3 btn-color">重置</b-button>
+      </div>
     </b-form>
     </div>
   </div>

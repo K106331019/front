@@ -9,9 +9,6 @@
     <template #cell(message)="data">
       {{ data.item.message }}
     </template>
-    <template #cell(action)="data">
-      <b-form-select v-model="data.options" :options="options" @change="finish(data.item._id)"></b-form-select>
-    </template>
   </b-table>
 </template>
 
@@ -24,18 +21,12 @@ export default {
         { key: '_id', label: '顧客編號' },
         { key: 'name', label: '顧客姓名' },
         { key: 'phone', label: '連絡電話' },
-        { key: 'message', label: '服務內容' },
-        { key: 'action', label: '編輯' }
+        { key: 'message', label: '服務內容' }
       ],
       options: [
         { value: 'true', text: '完成' },
         { value: 'false', text: '未完成' }
       ]
-    }
-  },
-  methods: {
-    async finish (id) {
-      console.log(id)
     }
   },
   async created () {

@@ -33,17 +33,13 @@
             <b-form-input id="input-phone" v-model="phone"  type="text" placeholder="請輸入電話" required></b-form-input>
           </b-form-group>
 
-          <b-form-group id="input-group-adress" label="收件住址" label-for="input-address">
+          <b-form-group id="input-group-address" label="收件住址" label-for="input-address">
             <b-form-input id="input-address" v-model="address" type="text" placeholder="請輸入地址" required></b-form-input>
           </b-form-group>
 
           <b-form-group id="input-group-email" label="電子信箱" label-for="input-email">
             <b-form-input id="input-email" v-model="email" type="email" placeholder="請輸入地址" required></b-form-input>
           </b-form-group>
-
-          <!-- <b-form-group id="input-group-email" label="付款方式" label-for="input-message">
-          <b-form-select id="message" v-model="form.pay" :options="pay" required ></b-form-select>
-          </b-form-group> -->
 
           <b-form-group id="input-group-email" label="備註" label-for="input-message">
           <b-form-textarea id="message" v-model="message" placeholder="訂單備註" rows="5" max-rows="10"></b-form-textarea>
@@ -136,7 +132,7 @@ export default {
   methods: {
     async checkout () {
       try {
-        await this.api.post('/orders', { name: this.name, phone: this.phone, address: this.address, message: this.message, pay: this.pay }, {
+        await this.api.post('/orders', { name: this.name, phone: this.phone, address: this.address, message: this.message, pay: this.pay, email: this.email }, {
           headers: {
             authorization: 'Bearer ' + this.user.token
           }
