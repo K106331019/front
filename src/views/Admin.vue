@@ -6,8 +6,8 @@
         <h1>後台管理系統</h1>
       </b-col>
       <b-col class="text-right">
-        <b-button to="/">
-          <b-icon icon="house" font-scale="3"></b-icon>
+        <b-button to="/" class="bg-transparent admin-btn">
+          <b-icon icon="house" font-scale="3" variant="dark" ></b-icon>
         </b-button>
       </b-col>
     </b-row>

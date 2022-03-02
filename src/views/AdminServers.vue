@@ -1,5 +1,5 @@
 <template>
-  <b-table :items="servers" :fields="fields" head-variant="dark" class="mt-5">
+  <b-table :items="servers" :fields="fields" head-variant="light" class="mt-5">
     <template #cell(name)="data">
       {{ data.item.name }}
     </template>

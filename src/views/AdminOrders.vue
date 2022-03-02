@@ -1,6 +1,6 @@
 <template>
 <div class="mt-5">
-<b-table :items="orders" :fields="fields" head-variant="dark">
+<b-table :items="orders" :fields="fields" head-variant="light">
     <template #cell(user)="data">
       {{ data.item.user.email }}
     </template>

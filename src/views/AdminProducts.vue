@@ -3,7 +3,7 @@
   <div>
     <b-row>
       <b-col>
-        <b-table sticky-header head-variant="dark" :items="products" :fields="fields" ref="table" class="bg-white mx-auto mt-5 product-table">
+        <b-table sticky-header head-variant="light" :items="products" :fields="fields" ref="table" class="bg-white mx-auto mt-5 product-table">
       <template #cell(image)="data">
         <img v-if="data.item.image" :src="data.item.image" class="w-50">
       </template>

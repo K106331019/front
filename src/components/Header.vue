@@ -1,8 +1,10 @@
 <template>
 <div id="header">
   <b-navbar toggleable="lg" class= "shadow w-100 mt-5">
-      <b-navbar-brand href="/">
-        <b-img src="../assets/image/logo.png" class="flower"></b-img>
+      <b-navbar-brand>
+        <router-link to="/">
+          <b-img src="../assets/image/logo.png" class="flower"></b-img>
+        </router-link>
       </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav >
