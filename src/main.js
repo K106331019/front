@@ -15,7 +15,11 @@ import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 import ImgInputer from 'vue-img-inputer'
 import 'vue-img-inputer/dist/index.css'
+import VueGtag from 'vue-gtag'
 
+Vue.use(VueGtag, {
+  config: { id: 'G-JGYSJKEQ1J' }
+})
 Vue.use(VueSweetalert2)
 Vue.use(VueAwesomeSwiper)
 Vue.use(BootstrapVue)

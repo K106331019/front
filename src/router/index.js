@@ -190,7 +190,8 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-router.afterEach((to, from) => {
+router.afterEach((to, from, next) => {
+  window.scrollTo(0, 0)
   document.title = to.meta.title
 })
 export default router

@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
     <img src="../assets/image/logo.png"  class="admin-logo">
-    <b-row  class="d-flex  w-100 p-5">
+    <b-row  class="d-flex w-100 p-5 admin-top">
       <b-col class="text-left">
         <h1>後台管理系統</h1>
       </b-col>
@@ -12,7 +12,7 @@
       </b-col>
     </b-row>
 
-    <div class="admin-card">
+    <div class="admin-card mt-4">
       <b-row class="w-100 mx-auto">
         <b-col lg="12">
           <b-nav tabs fill class="admin-title text-secondary">

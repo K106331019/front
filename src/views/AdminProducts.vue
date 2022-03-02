@@ -4,33 +4,33 @@
     <b-row>
       <b-col>
         <b-table sticky-header head-variant="light" :items="products" :fields="fields" ref="table" class="bg-white mx-auto mt-5 product-table">
-      <template #cell(image)="data">
-        <img v-if="data.item.image" :src="data.item.image" class="w-50">
-      </template>
-      <template #cell(sell)="data">
-        {{ data.item.sell ? 'v' : '' }}
-      </template>
-      <template #cell(category)="data">
-        <b-text v-if="data.item.category">
-          {{ data.item.category.big }} - {{ data.item.category.small }}</b-text>
-      </template>
-      <template #cell(action)="data">
-        <div class="d-flex">
-          <b-button @click="editProduct(data.index)">
-            <b-icon icon="pencil"></b-icon>
-          </b-button>
-          <b-button @click="delProduct(data.item._id)">
-            <b-icon icon="trash"></b-icon>
-          </b-button>
-        </div>
-      </template>
+          <template #cell(image)="data">
+            <img v-if="data.item.image" :src="data.item.image" class="w-50">
+          </template>
+          <template #cell(sell)="data">
+            {{ data.item.sell ? 'v' : '' }}
+          </template>
+          <template #cell(category)="data">
+            <b-text v-if="data.item.category">
+              {{ data.item.category.big }} - {{ data.item.category.small }}</b-text>
+          </template>
+          <template #cell(action)="data">
+            <div class="d-flex">
+              <b-button @click="editProduct(data.index)">
+                <b-icon icon="pencil"></b-icon>
+              </b-button>
+              <b-button @click="delProduct(data.item._id)">
+                <b-icon icon="trash"></b-icon>
+              </b-button>
+            </div>
+          </template>
     </b-table>
       </b-col>
     </b-row>
     <b-row class="mt-1">
       <b-col lg="2" class="mx-auto">
         <b-button v-b-modal.modal-product  class="addproduct">
-        <b-icon icon="plus-circle" font-scale="5"></b-icon>
+        <b-icon icon="plus-circle" font-scale="3"></b-icon>
         </b-button>
         <b-modal id="modal-product"  size="xl" centered
       :title="form._id.length > 0 ? '編輯商品' : '新增商品'"

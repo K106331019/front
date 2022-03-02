@@ -1,6 +1,6 @@
 <template>
 <div>
-  <router-link :to="'/flowerProduct/' + product._id">
+  <router-link :to="'/flowerProduct/' + product._id" style="text-decoration:none">
     <b-card :img-src="product.image" img-top style="box-shadow:none;">
     <b-card-body>
       <b-card-title class="text-dark text-center"> {{ product.name }} </b-card-title>
